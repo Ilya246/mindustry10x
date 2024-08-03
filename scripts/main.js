@@ -237,7 +237,7 @@ Vars.content.blocks().each(b => {
     if (b.craftTime) {
         b.craftTime /= 10;
     }
-    if (b instanceof Duct || b instanceof DuctBridge || b instanceof DuctRouter || b instanceof OverflowDuct || b instanceof DirectionalUnloader || b instanceof Junction) {
+    if (b instanceof Duct || b instanceof DuctBridge || b instanceof DuctRouter || b instanceof OverflowDuct || b instanceof DirectionalUnloader || b instanceof Junction || b instanceof Unloader) {
         b.speed /= 100;
     }
     if (b instanceof CoreBlock) {
