@@ -167,8 +167,8 @@ Vars.content.blocks().each(b => {
     if (b instanceof ForceProjector) {
         b.phaseRadiusBoost *= 10;
         b.phaseShieldBoost *= 10;
-        b.cooldownNormal /= 10;
-        b.cooldownBrokenBase /= 10;
+        b.cooldownNormal *= 10;
+        b.cooldownBrokenBase *= 10;
     }
     if (b instanceof ShieldWall) {
         b.breakCooldown /= 10;
