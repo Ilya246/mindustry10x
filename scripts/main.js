@@ -1,9 +1,13 @@
 if (Core.settings.getInt("m10x_multiplyWaveCounts", -1) == -1) {
     Core.settings.put("m10x_multiplyWaveCounts", java.lang.Integer(1));
 }
-multiplyWaveCounts = Core.settings.get("m10x_multiplyWaveCounts", -1) == 1;
+let multiplyWaveCounts = Core.settings.get("m10x_multiplyWaveCounts", -1) == 1;
 Events.on(WorldLoadEvent, e => {
-    Vars.world.tiles.eachTile(t=>{if(t.build){t.build.health *= 10}});
+    Vars.world.tiles.eachTile(t => {
+        if (t.build) {
+            t.build.health *= 10;
+        }
+    });
     Core.app.post(() => {
         if (multiplyWaveCounts) {
        	    Vars.state.rules.spawns.each(s => {
