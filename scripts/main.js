@@ -1,8 +1,18 @@
-let loadHeal = true;
+if (Core.settings.getInt("m10x_multiplyWaveCounts", -1) == -1) {
+    Core.settings.put("m10x_multiplyWaveCounts", java.lang.Integer(1));
+}
+multiplyWaveCounts = Core.settings.get("m10x_multiplyWaveCounts", -1) == 1;
 Events.on(WorldLoadEvent, e => {
-    if (loadHeal) {
-        Vars.world.tiles.eachTile(t=>{if(t.build){t.build.heal()}});
-    }
+    Vars.world.tiles.eachTile(t=>{if(t.build){t.build.health *= 10}});
+    Core.app.post(() => {
+        if (multiplyWaveCounts) {
+       	    Vars.state.rules.spawns.each(s => {
+                s.max *= 10;
+                s.unitAmount *= 10;
+                s.unitScaling *= 10;
+            });
+        }
+    });
 });
 
 Vars.content.bullets().each(b => {
