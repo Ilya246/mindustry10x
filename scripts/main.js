@@ -1,4 +1,4 @@
-loadHeal = true;
+let loadHeal = true;
 Events.on(WorldLoadEvent, e => {
     if (loadHeal) {
         Vars.world.tiles.eachTile(t=>{if(t.build){t.build.heal()}});
