@@ -13,11 +13,15 @@ Events.on(WorldLoadEvent, e => {
     });
     Core.app.post(() => {
         if (multiplyWaveCounts) {
-       	    Vars.state.rules.spawns.each(s => {
-                s.max *= 10;
-                s.unitAmount *= 10;
-                s.unitScaling *= 10;
-            });
+            let wasMultiplied = Vars.state.rules.tags.containsKey("m10x_wavesMultiplied");
+            if (!wasMultiplied) {
+                Vars.state.rules.tags.put("m10x_wavesMultiplied", 1);
+                Vars.state.rules.spawns.each(s => {
+                    s.max *= 10;
+                    s.unitAmount *= 10;
+                    s.unitScaling /= 10;
+                });
+            }
         }
     });
 });
