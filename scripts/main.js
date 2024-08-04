@@ -5,8 +5,11 @@ let multiplyWaveCounts = Core.settings.get("m10x_multiplyWaveCounts", -1) == 1;
 Events.on(WorldLoadEvent, e => {
     Vars.world.tiles.eachTile(t => {
         if (t.build) {
-            t.build.health *= 10;
+            t.build.heal();
         }
+    });
+    Groups.unit.each(u => {
+        u.heal();
     });
     Core.app.post(() => {
         if (multiplyWaveCounts) {
