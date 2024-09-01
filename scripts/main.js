@@ -52,6 +52,8 @@ Events.on(ContentInitEvent, e => {
         u.itemCapacity *= 10;
         u.buildSpeed *= (u.buildSpeed < 0 ? 1 : 10);
         u.buildRange *= 10;
+        u.mechLandShake *= 10;
+        u.stepShake *= 10;
         u.mineSpeed *= 10;
         u.mineTier *= (u.mineTier < 0 ? 1 : 10);
         u.weapons.each(w => {
@@ -59,6 +61,13 @@ Events.on(ContentInitEvent, e => {
             w.reload /= 10;
             w.inaccuracy *= 10;
             w.shake *= 10;
+            if (w.bullet) {
+                w.bullet.despawnShake *= 10;
+                w.bullet.hitShake *= 10;
+                if (w.bullet.shake) {
+                    w.bullet.shake *= 10;
+                }
+            }
             if (w.repairSpeed) {
                 w.repairSpeed *= 10;
             }
@@ -201,9 +210,11 @@ Events.on(ContentInitEvent, e => {
         if (b instanceof BufferedItemBridge) {
             b.bufferCapacity *= 10;
         }
+        if (b.shake) {
+            b.shake *= 10;
+        }
         if (b instanceof MassDriver) {
             b.bulletLifetime *= 10;
-            b.shake *= 10;
         }
         if (b instanceof HeatProducer) {
             b.heatOutput *= 10;
