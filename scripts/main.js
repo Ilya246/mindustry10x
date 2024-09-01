@@ -41,6 +41,11 @@ Events.on(ContentInitEvent, e => {
         b.homingRange *= 10;
         b.homingPower *= 10;
         b.lightningDamage *= (b.lightningDamage < 0 ? 1 : 10);
+        b.despawnShake *= 10;
+        b.hitShake *= 10;
+        if (b.shake) {
+            b.shake *= 10;
+        }
     });
 
     Vars.content.units().each(u => {
@@ -61,13 +66,6 @@ Events.on(ContentInitEvent, e => {
             w.reload /= 10;
             w.inaccuracy *= 10;
             w.shake *= 10;
-            if (w.bullet) {
-                w.bullet.despawnShake *= 10;
-                w.bullet.hitShake *= 10;
-                if (w.bullet.shake) {
-                    w.bullet.shake *= 10;
-                }
-            }
             if (w.repairSpeed) {
                 w.repairSpeed *= 10;
             }
